@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELP IMPERIA | Premium Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #9d50bb;
+            --dark: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--dark);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        canvas#stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 210, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            letter-spacing: 15px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+        .section-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 40px;
+            color: var(--primary);
+            letter-spacing: 3px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+        }
+
+        .service-card i { font-size: 3rem; display: block; margin-bottom: 15px; }
+
+        .portfolio {
+            background: rgba(255,255,255,0.02);
+            padding: 80px 0;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .faq-item:hover { background: rgba(255,255,255,0.1); }
+
+        .faq-question { 
+            padding: 20px; 
+            font-weight: 600; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .vote-count {
+            background: rgba(0, 210, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .form-box {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button.submit-btn:hover { letter-spacing: 2px; filter: brightness(1.2); }
+
+        .tg-link {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #26A5E4;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+
+        footer { text-align: center; padding: 50px; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<header>
+    <div class="logo-text">IMPERIA</div>
+    <p style="letter-spacing: 5px; opacity: 0.7;">DIGITAL ASSISTANCE CENTER</p>
+    <a href="#services" style="margin-top: 30px; color: var(--primary); text-decoration: none; font-size: 0.8rem;">PASTGA TUSHISH ↓</a>
+</header>
+
+<div class="container" id="services">
+    <h2 class="section-title">XIZMATLARIMIZ</h2>
+    <div class="grid">
+        <div class="service-card" onclick="setService('Prezentatsiya')"><i>📊</i><h3>Prezentatsiya</h3><p>PowerPoint va Canva'da zamonaviy dizaynlar.</p></div>
+        <div class="service-card" onclick="setService('HTML/CSS')"><i>💻</i><h3>Web Saytlar</h3><p>Landing page va vizitka saytlar yaratish.</p></div>
+        <div class="service-card" onclick="setService('Referat/Kurs ishi')"><i>📚</i><h3>O'quv Yordam</h3><p>Mustaqil ish va referatlarni tayyorlash.</p></div>
+        <div class="service-card" onclick="setService('Grafik Dizayn')"><i>🎨</i><h3>Dizayn</h3><p>Logotip va bannerlar tayyorlash.</p></div>
+    </div>
+</div>
+
+<div class="portfolio">
+    <div class="container">
+        <h2 class="section-title">ENG KO'P SO'RALADIGANLAR</h2>
+        <p style="text-align: center; margin-bottom: 30px; opacity: 0.6;">Savollarga ovoz bering, qaysi biri siz uchun muhim?</p>
+        
+        <div id="faq-list">
+            <div class="faq-item" onclick="addVote(1)">
+                <div class="faq-question">
+                    <span>Ishni necha kunda bitirasiz?</span>
+                    <span id="vote-1" class="vote-count">0 🔥</span>
+                </div>
+            </div>
+            <div class="faq-item" onclick="addVote(2)">
+                <div class="faq-question">
+                    <span>To'lov qanday bo'ladi?</span>
+                    <span id="vote-2" class="vote-count">0 🔥</span>
+                </div>
+            </div>
+            <div class="faq-item" onclick="addVote(3)">
+                <div class="faq-question">
+                    <span>Sifatiga kafolat bormi?</span>
+                    <span id="vote-3" class="vote-count">0 🔥</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="order">
+    <h2 class="section-title">BUYURTMA BERISH</h2>
+    <div class="form-box">
+        <form id="mainForm">
+            <input type="text" id="name" placeholder="Ismingiz" required>
+            <input type="tel" id="phone" placeholder="Telefon raqamingiz (+998)" required>
+            <select id="serviceType">
+                <option value="Tanlanmagan">Xizmat turini tanlang</option>
+                <option value="Prezentatsiya">Prezentatsiya</option>
+                <option value="Sayt">Sayt yaratish</option>
+                <option value="Oquv">O'quv yordam</option>
+                <option value="Dizayn">Grafik Dizayn</option>
+            </select>
+            <textarea id="detail" rows="5" placeholder="Loyiha haqida batafsil ma'lumot bering..." required></textarea>
+            <button type="submit" class="submit-btn">YUBORISH (TELEGRAM)</button>
+        </form>
+    </div>
+</div>
+
+<a href="https://t.me/samir_f4" class="tg-link">TELEGRAM ALOQA</a>
+
+<footer>&copy; 2025 HELP IMPERIA | Barcha huquqlar himoyalangan.</footer>
+
+<script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function initStars() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        stars = [];
+        for(let i=0; i<300; i++) stars.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*2, speed: Math.random()*0.5});
+    }
+    function animateStars() {
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        ctx.fillStyle = "white";
+        stars.forEach(s => {
+            s.y -= s.speed;
+            if(s.y < 0) s.y = canvas.height;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animateStars);
+    }
+    window.addEventListener('resize', initStars);
+    initStars(); animateStars();
+
+    ScrollReveal().reveal('.service-card', { delay: 200, distance: '50px', origin: 'bottom', interval: 100 });
+    ScrollReveal().reveal('.section-title', { delay: 100, scale: 0.9 });
+
+    // QAT'IY OVOZ BERISH TIZIMI (FAQAT BITTA TUGMAGA BIR MARTA)
+    function addVote(id) {
+        // Avval umuman ovoz bergan-bermaganini tekshirish
+        let hasVoted = localStorage.getItem('user_has_voted_globally');
+        
+        if (hasVoted) {
+            alert("Siz allaqachon bir marta ovoz bergansiz! Rahmat 😊");
+            return; 
+        }
+
+        // Ovoz qo'shish
+        let vData = JSON.parse(localStorage.getItem('imp_votes')) || {1:0, 2:0, 3:0};
+        vData[id] = (vData[id] || 0) + 1;
+        localStorage.setItem('imp_votes', JSON.stringify(vData));
+
+        // Global belgi qo'yish (endi boshqa hech qaysi tugmani bosa olmaydi)
+        localStorage.setItem('user_has_voted_globally', 'true');
+
+        showVotes();
+        
+        const el = document.getElementById(`vote-${id}`);
+        el.style.transform = "scale(1.4)";
+        setTimeout(() => el.style.transform = "scale(1)", 200);
+    }
+
+    function showVotes() {
+        let vData = JSON.parse(localStorage.getItem('imp_votes')) || {1:0, 2:0, 3:0};
+        for(let i in vData) {
+            const target = document.getElementById(`vote-${i}`);
+            if(target) target.innerText = vData[i] + " 🔥";
+        }
+    }
+    showVotes();
+
+    function setService(name) {
+        document.getElementById('serviceType').value = name;
+        document.getElementById('order').scrollIntoView({behavior: 'smooth'});
+    }
+
+    document.getElementById('mainForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const token = "8401392279:AAG7NH-W6niq31d4BLwh3DaxT3tqxcebTW0";
+        const chat_id = "5588598964";
+        const text = `🚀 *YANGI BUYURTMA* 🚀%0A%0A👤 *Mijoz:* ${document.getElementById('name').value}%0A📞 *Tel:* ${document.getElementById('phone').value}%0A🛠 *Xizmat:* ${document.getElementById('serviceType').value}%0A📝 *Ma'lumot:* ${document.getElementById('detail').value}`;
+        fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${text}&parse_mode=Markdown`)
+        .then(res => { if(res.ok) { alert("Xabaringiz yuborildi! ✅"); this.reset(); } });
+    });
+</script>
+</body>
+</html>
